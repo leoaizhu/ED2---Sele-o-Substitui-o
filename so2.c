@@ -2,14 +2,12 @@
 #include <stdlib.h>
 
 long long totalCombinar(int n) {
-    // C(n + 2, 2) = (n + 2)(n + 1) / 2
     return (long long)(n + 2) * (n + 1) / 2;
 }
 
 void combination(int N) {
     long long total = totalCombinar(N);
-    
-    // Alocar espaço para as combinações
+
     int (*combinations)[3] = malloc(total * sizeof(*combinations));
     if (combinations == NULL) {
         fprintf(stderr, "Erro ao alocar memória.\n");
@@ -17,8 +15,6 @@ void combination(int N) {
     }
 
     long long index = 0;
-
-    // Preencher o vetor com combinações possíveis de l, e, o
     for (int l = 0; l <= N; l++) {
         for (int e = 0; e <= N - l; e++) {
             int o = N - l - e;
@@ -28,8 +24,6 @@ void combination(int N) {
             index++;
         }
     }
-
-    // Imprimir as combinações
     for (long long calcula = 0; calcula < index; calcula++) {
         printf("l = %d, e = %d, o = %d\n", combinations[calcula][0], combinations[calcula][1], combinations[calcula][2]);
     }
@@ -38,7 +32,7 @@ void combination(int N) {
 }
 
 int main() {
-    int N = 100; // Definindo N como 100
+    int N = 1000;
     combination(N);  
     return 0;
 }
